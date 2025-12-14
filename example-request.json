@@ -16,13 +16,13 @@
       },
       "39": {
         "inputs": {
-          "clip_name": "qwen_3_4b.safetensors",
+          "clip_name": "Qwen3-4B.Q5_K_M.gguf",
           "type": "lumina2",
           "device": "default"
         },
-        "class_type": "CLIPLoader",
+        "class_type": "CLIPLoaderGGUF",
         "_meta": {
-          "title": "加载CLIP"
+          "title": "加载CLIP (GGUF)"
         }
       },
       "40": {
