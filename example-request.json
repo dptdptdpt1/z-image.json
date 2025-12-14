@@ -11,25 +11,27 @@
         },
         "class_type": "SaveImage",
         "_meta": {
-          "title": "SaveImage"
+          "title": "保存图像"
         }
       },
       "39": {
         "inputs": {
-          "filename": "qwen_3_4b.safetensors"
+          "clip_name": "qwen_3_4b.safetensors",
+          "type": "lumina2",
+          "device": "default"
         },
         "class_type": "CLIPLoader",
         "_meta": {
-          "title": "CLIPLoader"
+          "title": "加载CLIP"
         }
       },
       "40": {
         "inputs": {
-          "filename": "ae.safetensors"
+          "vae_name": "ae.safetensors"
         },
         "class_type": "VAELoader",
         "_meta": {
-          "title": "VAELoader"
+          "title": "加载VAE"
         }
       },
       "42": {
@@ -41,7 +43,7 @@
         },
         "class_type": "ConditioningZeroOut",
         "_meta": {
-          "title": "ConditioningZeroOut"
+          "title": "条件零化"
         }
       },
       "43": {
@@ -57,7 +59,7 @@
         },
         "class_type": "VAEDecode",
         "_meta": {
-          "title": "VAEDecode"
+          "title": "VAE解码"
         }
       },
       "44": {
@@ -87,7 +89,7 @@
         },
         "class_type": "KSampler",
         "_meta": {
-          "title": "KSampler"
+          "title": "K采样器"
         }
       },
       "45": {
@@ -100,42 +102,30 @@
         },
         "class_type": "CLIPTextEncode",
         "_meta": {
-          "title": "CLIPTextEncode"
+          "title": "CLIP文本编码"
         }
       },
       "46": {
         "inputs": {
-          "filename": "z_image_turbo_bf16.safetensors"
+          "unet_name": "z_image_turbo_bf16.safetensors",
+          "weight_dtype": "default"
         },
         "class_type": "UNETLoader",
         "_meta": {
-          "title": "UNETLoader"
+          "title": "UNet加载器"
         }
       },
       "47": {
         "inputs": {
-          "value": 3,
-          "model": [
-            "48",
-            0
-          ]
-        },
-        "class_type": "ModelSamplingAuraFlow",
-        "_meta": {
-          "title": "ModelSamplingAuraFlow"
-        }
-      },
-      "48": {
-        "inputs": {
-          "filename": "pixel_art_style_z_image_turbo.safetensors",
+          "shift": 3,
           "model": [
             "46",
             0
           ]
         },
-        "class_type": "LoraLoaderModelOnly",
+        "class_type": "ModelSamplingAuraFlow",
         "_meta": {
-          "title": "LoraLoaderModelOnly"
+          "title": "采样算法（AuraFlow）"
         }
       },
       "60": {
@@ -146,12 +136,12 @@
         },
         "class_type": "EmptySD3LatentImage",
         "_meta": {
-          "title": "EmptySD3LatentImage"
+          "title": "空Latent图像（SD3）"
         }
       },
       "61": {
         "inputs": {
-          "text": "z-Image",
+          "filename_prefix": "z-Image",
           "images": [
             "43",
             0
@@ -159,12 +149,12 @@
         },
         "class_type": "SaveImageS3",
         "_meta": {
-          "title": "SaveImageS3"
+          "title": "Save Image to S3"
         }
       },
       "62": {
         "inputs": {
-          "filename": "output/z-Image_00008_.png",
+          "text_0": "output/z-Image_00008_.png",
           "text": [
             "61",
             0
@@ -172,7 +162,7 @@
         },
         "class_type": "ShowText|pysssss",
         "_meta": {
-          "title": "ShowText|pysssss"
+          "title": "Show Text 🐍"
         }
       }
     }
