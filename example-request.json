@@ -1,0 +1,180 @@
+{
+  "input": {
+    "workflow": {
+      "9": {
+        "inputs": {
+          "filename_prefix": "z-image",
+          "images": [
+            "43",
+            0
+          ]
+        },
+        "class_type": "SaveImage",
+        "_meta": {
+          "title": "SaveImage"
+        }
+      },
+      "39": {
+        "inputs": {
+          "filename": "qwen_3_4b.safetensors"
+        },
+        "class_type": "CLIPLoader",
+        "_meta": {
+          "title": "CLIPLoader"
+        }
+      },
+      "40": {
+        "inputs": {
+          "filename": "ae.safetensors"
+        },
+        "class_type": "VAELoader",
+        "_meta": {
+          "title": "VAELoader"
+        }
+      },
+      "42": {
+        "inputs": {
+          "conditioning": [
+            "45",
+            0
+          ]
+        },
+        "class_type": "ConditioningZeroOut",
+        "_meta": {
+          "title": "ConditioningZeroOut"
+        }
+      },
+      "43": {
+        "inputs": {
+          "samples": [
+            "44",
+            0
+          ],
+          "vae": [
+            "40",
+            0
+          ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+          "title": "VAEDecode"
+        }
+      },
+      "44": {
+        "inputs": {
+          "seed": 289529965563667,
+          "steps": 9,
+          "cfg": 1,
+          "sampler_name": "res_multistep",
+          "scheduler": "simple",
+          "denoise": 1,
+          "model": [
+            "47",
+            0
+          ],
+          "positive": [
+            "45",
+            0
+          ],
+          "negative": [
+            "42",
+            0
+          ],
+          "latent_image": [
+            "60",
+            0
+          ]
+        },
+        "class_type": "KSampler",
+        "_meta": {
+          "title": "KSampler"
+        }
+      },
+      "45": {
+        "inputs": {
+          "text": "Y2K American fashion magazine cover, 2004 Teen Vogue style, sexy 22-year-old redhead with flippy hair, wearing low-rise camo cargo pants, metallic silver tube top, belly chain, posing against graffiti wall in NYC, confident stare, bright sunlight with lens flare, supersaturated colors, \"TEEN VOGUE\" giant pink letters top, bold white and lime cover lines bottom --ar 768:1280",
+          "clip": [
+            "39",
+            0
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "46": {
+        "inputs": {
+          "filename": "z_image_turbo_bf16.safetensors"
+        },
+        "class_type": "UNETLoader",
+        "_meta": {
+          "title": "UNETLoader"
+        }
+      },
+      "47": {
+        "inputs": {
+          "value": 3,
+          "model": [
+            "48",
+            0
+          ]
+        },
+        "class_type": "ModelSamplingAuraFlow",
+        "_meta": {
+          "title": "ModelSamplingAuraFlow"
+        }
+      },
+      "48": {
+        "inputs": {
+          "filename": "pixel_art_style_z_image_turbo.safetensors",
+          "model": [
+            "46",
+            0
+          ]
+        },
+        "class_type": "LoraLoaderModelOnly",
+        "_meta": {
+          "title": "LoraLoaderModelOnly"
+        }
+      },
+      "60": {
+        "inputs": {
+          "width": 768,
+          "height": 1280,
+          "batch_size": 1
+        },
+        "class_type": "EmptySD3LatentImage",
+        "_meta": {
+          "title": "EmptySD3LatentImage"
+        }
+      },
+      "61": {
+        "inputs": {
+          "text": "z-Image",
+          "images": [
+            "43",
+            0
+          ]
+        },
+        "class_type": "SaveImageS3",
+        "_meta": {
+          "title": "SaveImageS3"
+        }
+      },
+      "62": {
+        "inputs": {
+          "filename": "output/z-Image_00008_.png",
+          "text": [
+            "61",
+            0
+          ]
+        },
+        "class_type": "ShowText|pysssss",
+        "_meta": {
+          "title": "ShowText|pysssss"
+        }
+      }
+    }
+  }
+}
