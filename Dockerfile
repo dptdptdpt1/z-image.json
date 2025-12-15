@@ -1,9 +1,10 @@
 # clean base image containing only comfyui, comfy-cli and comfyui-manager
 FROM runpod/worker-comfyui:5.5.0-base
 # install custom nodes into comfyui
+RUN apt-get update && apt-get install -y git build-essential cmake && rm -rf /var/lib/apt/lists/*
 RUN comfy node install --exit-on-fail city96/ComfyUI-GGUF
 RUN comfy node install --exit-on-fail comfyui-custom-scripts@1.2.5
-RUN comfy node install --exit-on-fail comfys3@1.0.1
+RUN comfy node install --exit-on-fail TemryL/ComfyS3  # 推荐使用完整名，如果仍需指定版本可尝试 @1.0.1
 
 RUN comfy model download --url https://huggingface.co/tarn59/pixel_art_style_lora_z_image_turbo/resolve/main/pixel_art_style_z_image_turbo.safetensors --relative-path models/loras --filename pixel_art_style_z_image_turbo.safetensors
 
